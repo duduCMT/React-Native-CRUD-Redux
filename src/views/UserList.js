@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, FlatList, Alert } from 'react-native'
-import { Avatar, Button, Icon, ListItem } from 'react-native-elements'
+import { Avatar, Button, ListItem } from 'react-native-elements'
 import users from '../data/users'
 
 export default function UserList({ navigation }) {
@@ -18,7 +18,7 @@ export default function UserList({ navigation }) {
   function getUserItem({ item: user }) {
     return (
       <ListItem.Swipeable
-        onPress={() => navigation.navigate('UserForm')}
+        onPress={() => editUser(user)}
         key={user.id}
         bottomDivider
         leftContent={
