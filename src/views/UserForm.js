@@ -1,5 +1,5 @@
 import React, {useState, useContext} from 'react'
-import { View, Text, TextInput, StyleSheet } from 'react-native'
+import { View, Text, TextInput, StyleSheet, KeyboardAvoidingView, Platform } from 'react-native'
 import { Avatar, FAB } from 'react-native-elements'
 import UsersContext from '../context/UsersContext'
 
@@ -9,7 +9,7 @@ export default function UserForm({route, navigation}){
   const { dispatch } = useContext(UsersContext)
 
   return (
-    <View style={styles.form}>
+    <KeyboardAvoidingView style={styles.form} behavior={Platform.OS === "ios" ? "padding" : "height"}>
       <View style={styles.avatarContainer}>
         <Avatar 
           size={112}
@@ -59,7 +59,7 @@ export default function UserForm({route, navigation}){
           navigation.goBack()
         }}
       />
-    </View>
+    </KeyboardAvoidingView>
   )
 }
 
