@@ -10,7 +10,7 @@ export default function UserList({ navigation }) {
     navigation.navigate('UserForm', user)
   }
   function removeUser(user){
-    Alert.alert('Excluir Usuário', 'Deseja excluir o susuário?', [
+    Alert.alert('Excluir Usuário', 'Deseja excluir o usuário?', [
       { text: 'Sim', onPress: () => dispatch({ type: 'deleteUser', payload: user })},
       { text: 'Não' }
     ])
