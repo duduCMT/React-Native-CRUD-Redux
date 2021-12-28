@@ -1,6 +1,6 @@
 # CRUD Redux com Context API - React Native
 [![](https://img.shields.io/badge/version-0.0.1-yellow)](#) 
-[![](https://img.shields.io/badge/license-MIT-green)](https://github.com/duduCMT/React-Native-Calculator/blob/master/LICENSE) 
+[![](https://img.shields.io/badge/license-MIT-green)](https://github.com/duduCMT/React-Native-CRUD-Redux/blob/master/LICENSE) 
 ## 📸 Preview
 
 <p align="center">
