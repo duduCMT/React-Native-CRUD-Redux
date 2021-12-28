@@ -39,7 +39,7 @@ export default function UserList({ navigation }) {
           />
         }
       >
-        <Avatar rounded source={{ uri: user.avatarUrl }} />
+        <Avatar size={64} rounded source={{ uri: user.avatarUrl }} />
         <ListItem.Content>
           <ListItem.Title>{user.name}</ListItem.Title>
           <ListItem.Subtitle>{user.email}</ListItem.Subtitle>

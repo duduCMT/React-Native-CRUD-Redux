@@ -1,9 +1,12 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 import { View, Text, TextInput, StyleSheet } from 'react-native'
 import { FAB } from 'react-native-elements'
+import UsersContext from '../context/UsersContext'
 
 export default function UserForm({route, navigation}){
   const [user, setUser] = useState(route.params ? route.params : {})
+
+  const { dispatch } = useContext(UsersContext)
 
   return (
     <View style={styles.form}>
@@ -37,6 +40,10 @@ export default function UserForm({route, navigation}){
         icon={{ name: 'save', color: 'white' }}
         color="#00227b"
         onPress={() => {
+          dispatch({
+            type: user.id ? 'updateUser' : 'createUser',
+            payload: user,
+          })
           navigation.goBack()
         }}
       />

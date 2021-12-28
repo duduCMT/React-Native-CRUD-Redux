@@ -20,7 +20,7 @@ export default [
   {
     id: 4,
     name: 'Murilo Gentile',
-    email: 'mutilo@email.com',
+    email: 'murilo@email.com',
     avatarUrl: 'https://static.diverseui.com/male-36.jpg'
   },
 ]
