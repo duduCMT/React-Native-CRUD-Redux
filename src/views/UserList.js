@@ -4,14 +4,14 @@ import { Avatar, Button, ListItem } from 'react-native-elements'
 import UsersContext from '../context/UsersContext'
 
 export default function UserList({ navigation }) {
-  const { state } = useContext(UsersContext)
+  const { state, dispatch } = useContext(UsersContext)
 
   function editUser(user){
     navigation.navigate('UserForm', user)
   }
   function removeUser(user){
     Alert.alert('Excluir Usuário', 'Deseja excluir o susuário?', [
-      { text: 'Sim', onPress: () => console.warn('Removendo Usuário ' + user.id)},
+      { text: 'Sim', onPress: () => dispatch({ type: 'deleteUser', payload: user })},
       { text: 'Não' }
     ])
   }
