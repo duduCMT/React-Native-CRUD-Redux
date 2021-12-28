@@ -1,12 +1,35 @@
 import React, {useState, useContext} from 'react'
-import { View, Text, TextInput, StyleSheet, KeyboardAvoidingView, Platform } from 'react-native'
+import { View, Text, TextInput, StyleSheet, KeyboardAvoidingView, Platform, Alert } from 'react-native'
 import { Avatar, FAB } from 'react-native-elements'
 import UsersContext from '../context/UsersContext'
 
 export default function UserForm({route, navigation}){
   const [user, setUser] = useState(route.params ? route.params : {})
-
   const { dispatch } = useContext(UsersContext)
+
+  function handleSalvar(){
+    if(!(user.name && user.email && user.avatarUrl)){
+      Alert.alert(
+        "Formulário Incompleto",
+        "Todas as informações do cadastro devem ser preenchidas. Verifique e tente novamente.",
+        [{ text: "Ok"}]
+      )
+      return
+    } else if(!(/\S+@\S+\.\S+/.test(user.email))){
+      Alert.alert(
+        "E-mail inválido!",
+        "O e-mail informado é inválido, verifique as informações e tente novamente.",
+        [{ text: "Ok"}]
+      )
+      return
+    }
+    
+    dispatch({
+      type: user.id ? 'updateUser' : 'createUser',
+      payload: user,
+    })
+    navigation.goBack()
+  }
 
   return (
     <KeyboardAvoidingView style={styles.form} behavior={Platform.OS === "ios" ? "padding" : "height"}>
@@ -51,13 +74,7 @@ export default function UserForm({route, navigation}){
         placement="right"
         icon={{ name: 'save', color: 'white' }}
         color="#00227b"
-        onPress={() => {
-          dispatch({
-            type: user.id ? 'updateUser' : 'createUser',
-            payload: user,
-          })
-          navigation.goBack()
-        }}
+        onPress={handleSalvar}
       />
     </KeyboardAvoidingView>
   )
