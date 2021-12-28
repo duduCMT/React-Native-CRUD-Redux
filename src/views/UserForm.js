@@ -1,6 +1,6 @@
 import React, {useState, useContext} from 'react'
 import { View, Text, TextInput, StyleSheet } from 'react-native'
-import { FAB } from 'react-native-elements'
+import { Avatar, FAB } from 'react-native-elements'
 import UsersContext from '../context/UsersContext'
 
 export default function UserForm({route, navigation}){
@@ -10,6 +10,16 @@ export default function UserForm({route, navigation}){
 
   return (
     <View style={styles.form}>
+      <View style={styles.avatarContainer}>
+        <Avatar 
+          size={112}
+          rounded
+          icon={{ name: 'person' }}
+          source={user.avatarUrl ? {uri: user.avatarUrl} : null}
+          containerStyle={{ backgroundColor: '#babdbe' }}
+        />
+      </View>
+
       <Text style={styles.label}>Nome Completo</Text>
       <TextInput 
         style={styles.input}
@@ -21,6 +31,7 @@ export default function UserForm({route, navigation}){
       <Text style={styles.label}>E-mail</Text>
       <TextInput 
         style={styles.input}
+        keyboardType='email-address'
         onChangeText={email => setUser({...user, email})}
         placeholder='Informe seu e-mail'
         value={user.email}
@@ -32,6 +43,7 @@ export default function UserForm({route, navigation}){
         onChangeText={avatarUrl => setUser({...user, avatarUrl})}
         placeholder='Informe a URL do seu Avatar'
         value={user.avatarUrl}
+        selectTextOnFocus
       />
 
       <FAB
@@ -56,6 +68,11 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 16,
   },
+  avatarContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 128,
+  },  
   label: {
     color: 'black',
     marginBottom: 4,
